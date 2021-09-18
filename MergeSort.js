@@ -1,35 +1,41 @@
 /*
 	Merge Sort in JavaScript.
 */
-// Split the array down to one.
-function merge(arr){
-	if(arr.length <=1){ // Base case. replace current stack frame with value when one or less is left.
+function merge(arr) {
+	if (arr.length <= 1) {
 		return arr;
 	}
-	else{		
-		var left = merge(arr.slice(0,arr.length/2)); // Add to stack frame the left array divided by 2
-		var right = merge(arr.slice((arr.length/2), arr.length)); // Add to	stack frame the right array divided by 2
-		return mergeSort(left,right); // Merge variable left and right to sort in mergeSort function.
-	}
+	const left = merge(arr.slice(0, arr.length / 2));
+	const right = merge(arr.slice((arr.length / 2), arr.length));
+	return mergeSort(left, right);
 }
-// Sort the array.
-function mergeSort(left,right){
-	var newLst = [];
-	while(left.length > 0 && right.length >0){ // Compare left and right list. Push to newLst. Stop if one of them has no value.
-		if(left[0] <= right[0]){
-			newLst.push(left.shift());
+
+function mergeSort(left, right) {
+	const newLst = [];
+	let leftIndex = 0;
+	let rightIndex = 0;
+	while (leftIndex < left.length && rightIndex < right.length) {
+		const leftItem = left[leftIndex];
+		const rightItem = right[rightIndex];
+		if (leftItem < rightItem) {
+			newLst.push(leftItem);
+			leftIndex += 1;
+			continue;
 		}
-		else{
-			newLst.push(right.shift());
-		}
+		newLst.push(rightItem);
+		rightIndex += 1;
 	}
-	// If any values in left list, add to newLst 
-	while(left.length != 0){
-		newLst.push(left.shift());
+
+	for (let i = leftIndex; i < left.length; i++) {
+		newLst.push(left[i]);
 	}
-	// If any values in right list, add to newLst
-	while(right.length !=0){
-		newLst.push(right.shift());
+
+	for (let i = rightIndex; i < right.length; i++) {
+		newLst.push(right[i]);
 	}
-	return newLst; // return sorted list.
+
+	return newLst;
 }
+
+const merger = (arr) => merge(arr);
+module.exports = merger;

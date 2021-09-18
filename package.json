@@ -1,0 +1,22 @@
+{
+  "name": "merge-sort",
+  "version": "1.0.0",
+  "description": "[a link](https://github.com/user/repo/blob/branch/other_file.md)",
+  "main": "MergeSort.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+  	"test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grimur82/Merge-Sort.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grimur82/Merge-Sort/issues"
+  },
+  "homepage": "https://github.com/grimur82/Merge-Sort#readme"
+}

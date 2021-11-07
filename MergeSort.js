@@ -7,34 +7,40 @@ function merge(arr) {
 	}
 	const left = merge(arr.slice(0, arr.length / 2));
 	const right = merge(arr.slice((arr.length / 2), arr.length));
-	return mergeSort(left, right);
+	const leftIterator = mergeHelper(left)
+	const rightIterator = mergeHelper(right)
+	return mergeSort(leftIterator,rightIterator);
 }
 
-function mergeSort(left, right) {
+function mergeSort(leftIterator, rightIterator) {
 	const newLst = [];
-	let leftIndex = 0;
-	let rightIndex = 0;
-	while (leftIndex < left.length && rightIndex < right.length) {
-		const leftItem = left[leftIndex];
-		const rightItem = right[rightIndex];
-		if (leftItem < rightItem) {
-			newLst.push(leftItem);
-			leftIndex += 1;
+	let leftItem = leftIterator.next()
+	let rightItem = rightIterator.next()
+	while (!leftItem.done && !rightItem.done) {
+		if (leftItem.value < rightItem.value) {
+			newLst.push(leftItem.value);
+			leftItem = leftIterator.next();
 			continue;
 		}
-		newLst.push(rightItem);
-		rightIndex += 1;
+		newLst.push(rightItem.value);
+		rightItem = rightIterator.next();
+	}
+	
+	while(!leftItem.done){
+		newLst.push(leftItem.value);
+		leftItem = leftIterator.next()
 	}
 
-	for (let i = leftIndex; i < left.length; i++) {
-		newLst.push(left[i]);
-	}
-
-	for (let i = rightIndex; i < right.length; i++) {
-		newLst.push(right[i]);
+	while(!rightItem.done){
+		newLst.push(rightItem.value);
+		rightItem = rightIterator.next()
 	}
 
 	return newLst;
+}
+
+function* mergeHelper(items) {
+	yield* items;
 }
 
 const merger = (arr) => merge(arr);

@@ -25,18 +25,11 @@ function mergeSort(leftIterator, rightIterator) {
 		newLst.push(rightItem.value);
 		rightItem = rightIterator.next();
 	}
-	
-	while(!leftItem.done){
-		newLst.push(leftItem.value);
-		leftItem = leftIterator.next()
-	}
 
-	while(!rightItem.done){
-		newLst.push(rightItem.value);
-		rightItem = rightIterator.next()
-	}
+	const leftItems = !leftItem.done ? [leftItem.value, ...leftIterator] : []
+	const rightItems = !rightItem.done ? [rightItem.value, ...rightIterator] : []
 
-	return newLst;
+	return [...newLst, ...leftItems, ...rightItems];
 }
 
 function* mergeHelper(items) {

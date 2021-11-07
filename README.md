@@ -1,7 +1,7 @@
 # Merge Sort in JavaScript
 
 # Introduction
-Merge sorting an array with integers. Coded in javascript.
+Sorting algorithms. Coded in Javascript.
 
 ## Features
 

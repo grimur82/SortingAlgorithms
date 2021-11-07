@@ -1,7 +1,7 @@
-# Merge Sort in JavaScript
+# Sorting Algorithms in JavaScript
 
 # Introduction
-Sorting algorithms. Coded in Javascript.
+Sorting algorithms.
 
 ## Features
 
